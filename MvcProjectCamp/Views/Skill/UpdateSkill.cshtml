@@ -1,0 +1,22 @@
+﻿@model EntityLayer.Concrete.Skill
+@{
+    ViewBag.Title = "UpdateSkill";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>UpdateSkill</h2>
+@using (Html.BeginForm("UpdateSkill", "Skill", FormMethod.Post))
+{
+    @Html.HiddenFor(x=>x.SkillID, new {@class="form-control"})
+
+    @Html.Label("Skill Name")
+    @Html.TextBoxFor(x => x.SkillName, new {@class="form-control"})
+    @Html.ValidationMessageFor(x=>x.SkillName,"",new { @style="color:red"})
+    <br />
+
+    @Html.Label("Skill Range")
+    @Html.TextBoxFor(x=>x.SkillRange,new { @class="form-control"})
+    @Html.ValidationMessageFor(x => x.SkillRange,"", new {@style="color:red"})
+    <br />
+    <button class="btn btn-info">Edit Skill</button>
+}

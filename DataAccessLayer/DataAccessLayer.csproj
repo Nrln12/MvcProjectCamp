@@ -52,13 +52,28 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\IAboutDal.cs" />
+    <Compile Include="Abstract\IAdmin.cs" />
     <Compile Include="Abstract\IAuthorDal.cs" />
     <Compile Include="Abstract\ICategoryDal.cs" />
     <Compile Include="Abstract\IContactDal.cs" />
     <Compile Include="Abstract\IContentDal.cs" />
-    <Compile Include="Abstract\IHeading.cs" />
+    <Compile Include="Abstract\IDraftMessageDal.cs" />
+    <Compile Include="Abstract\IHeadingDal.cs" />
+    <Compile Include="Abstract\IImageFileDal.cs" />
+    <Compile Include="Abstract\IMessageDal.cs" />
     <Compile Include="Abstract\IRepository.cs" />
+    <Compile Include="Abstract\ISkillDal.cs" />
     <Compile Include="Concrete\Context.cs" />
+    <Compile Include="EntityFramework\EfAboutDal.cs" />
+    <Compile Include="EntityFramework\EfAuthorDal.cs" />
+    <Compile Include="EntityFramework\EfCategoryDal.cs" />
+    <Compile Include="EntityFramework\EfContactDal.cs" />
+    <Compile Include="EntityFramework\EfContentDal.cs" />
+    <Compile Include="EntityFramework\EfDraftMessageDal.cs" />
+    <Compile Include="EntityFramework\EfHeadingDal.cs" />
+    <Compile Include="EntityFramework\EfImageFileDal.cs" />
+    <Compile Include="EntityFramework\EfMessageDal.cs" />
+    <Compile Include="EntityFramework\EfSkillDal.cs" />
     <Compile Include="Migrations\202211031058054_mig1.cs" />
     <Compile Include="Migrations\202211031058054_mig1.designer.cs">
       <DependentUpon>202211031058054_mig1.cs</DependentUpon>
@@ -66,6 +81,90 @@
     <Compile Include="Migrations\202211031102429_mig2.cs" />
     <Compile Include="Migrations\202211031102429_mig2.designer.cs">
       <DependentUpon>202211031102429_mig2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202211240948303_mig_author_edit.cs" />
+    <Compile Include="Migrations\202211240948303_mig_author_edit.designer.cs">
+      <DependentUpon>202211240948303_mig_author_edit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202211241306445_mig_authortitle_add_column.cs" />
+    <Compile Include="Migrations\202211241306445_mig_authortitle_add_column.designer.cs">
+      <DependentUpon>202211241306445_mig_authortitle_add_column.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202211241536091_update_length.cs" />
+    <Compile Include="Migrations\202211241536091_update_length.designer.cs">
+      <DependentUpon>202211241536091_update_length.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202212011304529_add_author_status.cs" />
+    <Compile Include="Migrations\202212011304529_add_author_status.designer.cs">
+      <DependentUpon>202212011304529_add_author_status.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202212040928109_mig_contentstatusadd.cs" />
+    <Compile Include="Migrations\202212040928109_mig_contentstatusadd.designer.cs">
+      <DependentUpon>202212040928109_mig_contentstatusadd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202212041144160_mig_addheadingstatus.cs" />
+    <Compile Include="Migrations\202212041144160_mig_addheadingstatus.designer.cs">
+      <DependentUpon>202212041144160_mig_addheadingstatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202212041954022_add_mig_message_class.cs" />
+    <Compile Include="Migrations\202212041954022_add_mig_message_class.designer.cs">
+      <DependentUpon>202212041954022_add_mig_message_class.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202212061156430_add_mig_draft_table1.cs" />
+    <Compile Include="Migrations\202212061156430_add_mig_draft_table1.designer.cs">
+      <DependentUpon>202212061156430_add_mig_draft_table1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202212061536300_add_date_column.cs" />
+    <Compile Include="Migrations\202212061536300_add_date_column.designer.cs">
+      <DependentUpon>202212061536300_add_date_column.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202212081454467_mig_add_validation_to_receiveremail.cs" />
+    <Compile Include="Migrations\202212081454467_mig_add_validation_to_receiveremail.designer.cs">
+      <DependentUpon>202212081454467_mig_add_validation_to_receiveremail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202212081505262_delete_validation_from_receiveremail.cs" />
+    <Compile Include="Migrations\202212081505262_delete_validation_from_receiveremail.designer.cs">
+      <DependentUpon>202212081505262_delete_validation_from_receiveremail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202212081615269_add_col_image_file.cs" />
+    <Compile Include="Migrations\202212081615269_add_col_image_file.designer.cs">
+      <DependentUpon>202212081615269_add_col_image_file.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202212091800288_add_admin_table.cs" />
+    <Compile Include="Migrations\202212091800288_add_admin_table.designer.cs">
+      <DependentUpon>202212091800288_add_admin_table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202212141058046_add_message_status_column.cs" />
+    <Compile Include="Migrations\202212141058046_add_message_status_column.designer.cs">
+      <DependentUpon>202212141058046_add_message_status_column.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202212141312596_add_IsChecked_column.cs" />
+    <Compile Include="Migrations\202212141312596_add_IsChecked_column.designer.cs">
+      <DependentUpon>202212141312596_add_IsChecked_column.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202212141355115_delete_column_isChecked.cs" />
+    <Compile Include="Migrations\202212141355115_delete_column_isChecked.designer.cs">
+      <DependentUpon>202212141355115_delete_column_isChecked.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202212141356196_add_aboutStatus_column.cs" />
+    <Compile Include="Migrations\202212141356196_add_aboutStatus_column.designer.cs">
+      <DependentUpon>202212141356196_add_aboutStatus_column.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202212141518416_add_skill_table.cs" />
+    <Compile Include="Migrations\202212141518416_add_skill_table.designer.cs">
+      <DependentUpon>202212141518416_add_skill_table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202212141625128_add_SkillStatus_column.cs" />
+    <Compile Include="Migrations\202212141625128_add_SkillStatus_column.designer.cs">
+      <DependentUpon>202212141625128_add_SkillStatus_column.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202212141642021_add_validation.cs" />
+    <Compile Include="Migrations\202212141642021_add_validation.designer.cs">
+      <DependentUpon>202212141642021_add_validation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202212142212119_change_datatype.cs" />
+    <Compile Include="Migrations\202212142212119_change_datatype.designer.cs">
+      <DependentUpon>202212142212119_change_datatype.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -89,6 +188,69 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202211031102429_mig2.resx">
       <DependentUpon>202211031102429_mig2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202211240948303_mig_author_edit.resx">
+      <DependentUpon>202211240948303_mig_author_edit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202211241306445_mig_authortitle_add_column.resx">
+      <DependentUpon>202211241306445_mig_authortitle_add_column.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202211241536091_update_length.resx">
+      <DependentUpon>202211241536091_update_length.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202212011304529_add_author_status.resx">
+      <DependentUpon>202212011304529_add_author_status.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202212040928109_mig_contentstatusadd.resx">
+      <DependentUpon>202212040928109_mig_contentstatusadd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202212041144160_mig_addheadingstatus.resx">
+      <DependentUpon>202212041144160_mig_addheadingstatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202212041954022_add_mig_message_class.resx">
+      <DependentUpon>202212041954022_add_mig_message_class.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202212061156430_add_mig_draft_table1.resx">
+      <DependentUpon>202212061156430_add_mig_draft_table1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202212061536300_add_date_column.resx">
+      <DependentUpon>202212061536300_add_date_column.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202212081454467_mig_add_validation_to_receiveremail.resx">
+      <DependentUpon>202212081454467_mig_add_validation_to_receiveremail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202212081505262_delete_validation_from_receiveremail.resx">
+      <DependentUpon>202212081505262_delete_validation_from_receiveremail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202212081615269_add_col_image_file.resx">
+      <DependentUpon>202212081615269_add_col_image_file.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202212091800288_add_admin_table.resx">
+      <DependentUpon>202212091800288_add_admin_table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202212141058046_add_message_status_column.resx">
+      <DependentUpon>202212141058046_add_message_status_column.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202212141312596_add_IsChecked_column.resx">
+      <DependentUpon>202212141312596_add_IsChecked_column.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202212141355115_delete_column_isChecked.resx">
+      <DependentUpon>202212141355115_delete_column_isChecked.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202212141356196_add_aboutStatus_column.resx">
+      <DependentUpon>202212141356196_add_aboutStatus_column.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202212141518416_add_skill_table.resx">
+      <DependentUpon>202212141518416_add_skill_table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202212141625128_add_SkillStatus_column.resx">
+      <DependentUpon>202212141625128_add_SkillStatus_column.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202212141642021_add_validation.resx">
+      <DependentUpon>202212141642021_add_validation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202212142212119_change_datatype.resx">
+      <DependentUpon>202212142212119_change_datatype.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

@@ -1,0 +1,37 @@
+﻿@using EntityLayer.Concrete
+@model List<About>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@{ string status = "";}
+@{ string color = "";}
+<h2>About Data List</h2>
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>About Heading</th>
+        <th>Change Status</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        if (item.AboutStatus == true)
+        {
+            status = "Make Passive";
+            color = "btn btn-danger";
+        }
+        else
+        {
+            status = "Make Active";
+            color = "btn btn-warning";
+        }
+        <tr>
+            <td>@item.AboutID</td>
+            <td>Heading</td>
+            <td><a href="/About/ChangeStatus/@item.AboutID" class="@color">@status</a></td>
+        </tr>
+    }
+</table>
+
+@Html.Action("AboutPartial", "About")
+<script src="~/AdminLTE-3.0.4/plugins/jquery/jquery.min.js"></script>

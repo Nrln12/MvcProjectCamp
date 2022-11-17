@@ -1,0 +1,10 @@
+﻿@using EntityLayer.Concrete
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="col-3">
+    @Html.Action("CategoryCount","Statistic")
+</div>

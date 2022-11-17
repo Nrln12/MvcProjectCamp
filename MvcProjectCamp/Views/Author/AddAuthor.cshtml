@@ -1,0 +1,37 @@
+﻿@model EntityLayer.Concrete.Author
+@{
+    ViewBag.Title = "AddAuthor";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Add New Author</h1>
+@using (Html.BeginForm("AddAuthor", "Author", FormMethod.Post))
+{
+    <div class="form form-group">
+        @Html.Label("Author name")
+        @Html.TextBoxFor(x => x.AuthorFirstName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.AuthorFirstName)
+        <br />
+        @Html.Label("Author lastname")
+        @Html.TextBoxFor(x => x.AuthorLastName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.AuthorLastName)
+        <br />
+        @Html.Label("Author Email")
+        @Html.TextBoxFor(x => x.AuthorEmail, new {@class="form-control"})
+        @Html.ValidationMessageFor(x=>x.AuthorEmail)
+        <br />
+        @Html.Label("Author Password")
+        @Html.TextBoxFor(x=>x.AuthorPassword, new { @class="form-control"})
+        @Html.ValidationMessageFor(x=>x.AuthorPassword)
+        <br />
+        @Html.Label("Author Title")
+        @Html.TextBoxFor(x=>x.AuthorTitle, new { @class="form-control"})
+        @Html.ValidationMessageFor(x=>x.AuthorTitle)
+        <br />
+        @Html.Label("Author About")
+        @Html.TextAreaFor(x=>x.AuhtorAbout, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x=>x.AuhtorAbout)
+        <br />
+        <button class="btn btn-info">Add Author</button>
+    </div>
+}
