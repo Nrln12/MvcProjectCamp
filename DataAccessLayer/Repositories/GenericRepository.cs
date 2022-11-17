@@ -26,6 +26,11 @@ namespace DataAccessLayer.Repositories
             c.SaveChanges();
         }
 
+        public T Get(Expression<Func<T, bool>> filter)
+        {
+            return _object.SingleOrDefault(filter);
+        }
+
         public void Insert(T p)
         {
             _object.Add(p);
@@ -44,7 +49,7 @@ namespace DataAccessLayer.Repositories
 
         public void Update(T p)
         {
-            throw new NotImplementedException();
+            c.SaveChanges();
         }
     }
 }

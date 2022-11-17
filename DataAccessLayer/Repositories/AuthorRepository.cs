@@ -20,6 +20,11 @@ namespace DataAccessLayer.Repositories
             throw new NotImplementedException();
         }
 
+        public Author Get(Expression<Func<Author, bool>> filter)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Insert(Author p)
         {
             throw new NotImplementedException();
