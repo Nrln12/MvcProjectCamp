@@ -11,6 +11,7 @@ namespace MvcProjectCamp.Controllers
 {
     public class LoginController : Controller
     {
+        Context c = new Context();
         // GET: Login
         [HttpGet]
         public ActionResult Index()
@@ -21,7 +22,7 @@ namespace MvcProjectCamp.Controllers
         [HttpPost]
         public ActionResult Index(Admin p)
         {
-            Context c = new Context();
+            
             var adminUserInfo = c.Admins.FirstOrDefault(x => x.AdminUserName == p.AdminUserName && x.AdminPassword == p.AdminPassword);
             if (adminUserInfo != null)
             {
@@ -32,6 +33,28 @@ namespace MvcProjectCamp.Controllers
             else
             {
                 return RedirectToAction("Index");
+            }
+        }
+        [HttpGet]
+        public ActionResult AuthorLogin()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AuthorLogin(Author p)
+        {
+           
+            var authorUserInfo = c.Authors.FirstOrDefault(x => x.AuthorEmail == p.AuthorEmail && x.AuthorPassword == p.AuthorPassword);
+            if(authorUserInfo != null)
+            {
+                FormsAuthentication.SetAuthCookie(authorUserInfo.AuthorEmail, false);
+                Session["AuthorEmail"] = authorUserInfo.AuthorEmail;
+                return RedirectToAction("MyContent", "AuthorPanelContent");
+            }
+            else
+            {
+                return RedirectToAction("AuthorLogin");
             }
         }
     }

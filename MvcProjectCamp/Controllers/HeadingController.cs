@@ -73,8 +73,17 @@ namespace MvcProjectCamp.Controllers
         public ActionResult DeleteHeading(int id)
         {
             var headingValue = hm.GetByID(id);
-            headingValue.HeadingStatus = false;
-            hm.HeadingDelete(headingValue);
+            if (headingValue.HeadingStatus == false)
+            {
+                headingValue.HeadingStatus = true;
+                hm.HeadingUpdate(headingValue);
+            }
+            else
+            {
+                headingValue.HeadingStatus = false;
+                hm.HeadingDelete(headingValue);
+            }
+            
             return RedirectToAction("Index");
         }
     }

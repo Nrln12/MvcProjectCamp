@@ -33,6 +33,7 @@ namespace BusinessLayer.Concrete
 
         public void HeadingAdd(Heading heading)
         {
+            heading.HeadingStatus = true;
             _headingDal.Insert(heading);
         }
 
