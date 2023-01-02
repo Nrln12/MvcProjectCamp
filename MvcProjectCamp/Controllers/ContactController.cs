@@ -23,9 +23,10 @@ namespace MvcProjectCamp.Controllers
 
         public PartialViewResult ContactPartial()
         {
+            string p = (string)Session["AuthorEmail"];
             var numContact = cm.GetList().Count();
             var numUnreadInbox = mm.GetUnreadMessages().Count();
-            var numSentbox = mm.GetListSendbox().Count();
+            var numSentbox = mm.GetListSendbox(p).Count();
             ViewBag.contCount = numContact;
             ViewBag.unreadCount = numUnreadInbox;
             ViewBag.sentCount = numSentbox;

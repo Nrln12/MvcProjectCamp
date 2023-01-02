@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.Concrete;
+using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using System;
@@ -6,6 +7,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
+using PagedList.Mvc;
+using FluentValidation.Results;
+using BusinessLayer.ValidationRules;
 
 namespace MvcProjectCamp.Controllers
 {
@@ -14,22 +19,53 @@ namespace MvcProjectCamp.Controllers
         // GET: AuthorPanel
         HeadingManager hm = new HeadingManager(new EfHeadingDal());
         CategoryManager cm = new CategoryManager(new EfCategoryDal());
+        AuhtorManager am = new AuhtorManager(new EfAuthorDal());
+        Context c = new Context();
+        AuthorValidator validator = new AuthorValidator();
 
-        public ActionResult AuthorProfile()
+        int authorIDInfo;
+
+        [HttpGet]
+        public ActionResult AuthorProfile(int id=0)
         {
+            string p = (string)Session["AuthorEmail"];
+            ViewBag.d = p;
+            id = c.Authors.Where(x => x.AuthorEmail == p).Select(y => y.AuthorID).FirstOrDefault();
+            var author = am.GetById(id);
+            return View(author);
+        }
+
+        [HttpPost]
+        public ActionResult AuthorProfile(Author p)
+        {
+            ValidationResult result = validator.Validate(p);
+            if (result.IsValid)
+            {
+                am.AuthorUpdate(p);
+                return RedirectToAction("AllHeadings","AuthorPanel");
+            }
+            else
+            {
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+            }
             return View();
         }
 
         [AllowAnonymous]
-        public ActionResult MyHeading()
+        public ActionResult MyHeading(string p)
         {
-          
-            var values = hm.GetListByHeading();
+            p = (string)Session["AuthorEmail"];
+            authorIDInfo = c.Authors.Where(x => x.AuthorEmail == p).Select(y => y.AuthorID).FirstOrDefault();
+            var values = hm.GetListByAuthor(authorIDInfo);
             return View(values);
         }
         [HttpGet]
         public ActionResult NewHeading()
         {
+            
             List<SelectListItem> valuecategory = (from x in cm.GetList()
                                                   select new SelectListItem
                                                   {
@@ -44,8 +80,11 @@ namespace MvcProjectCamp.Controllers
         [HttpPost] 
         public ActionResult NewHeading(Heading p)
         {
+            string mail = (string)Session["AuthorEmail"];
+            var authorIdInfo = c.Authors.Where(x => x.AuthorEmail == mail).Select(y => y.AuthorID).FirstOrDefault();
+            ViewBag.m = authorIdInfo;
             p.HeadingDate =DateTime.Parse(DateTime.Now.ToShortDateString());
-            p.AuthorID = 4;
+            p.AuthorID = authorIdInfo;
             hm.HeadingAdd(p);
             return RedirectToAction("MyHeading");
         }
@@ -87,6 +126,12 @@ namespace MvcProjectCamp.Controllers
             }
             
             return RedirectToAction("MyHeading");
+        }
+
+        public ActionResult AllHeadings(int p=1)
+        {
+            var headings = hm.GetList().ToPagedList(p, 4);
+            return View(headings);
         }
     }
 }

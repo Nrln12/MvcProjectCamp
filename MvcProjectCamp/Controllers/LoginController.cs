@@ -1,4 +1,6 @@
-﻿using DataAccessLayer.Concrete;
+﻿using BusinessLayer.Concrete;
+using DataAccessLayer.Concrete;
+using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
@@ -9,9 +11,11 @@ using System.Web.Security;
 
 namespace MvcProjectCamp.Controllers
 {
+    [AllowAnonymous]
     public class LoginController : Controller
     {
         Context c = new Context();
+        AuthorLoginManager alm = new AuthorLoginManager(new EfAuthorDal());
         // GET: Login
         [HttpGet]
         public ActionResult Index()
@@ -44,8 +48,9 @@ namespace MvcProjectCamp.Controllers
         [HttpPost]
         public ActionResult AuthorLogin(Author p)
         {
-           
-            var authorUserInfo = c.Authors.FirstOrDefault(x => x.AuthorEmail == p.AuthorEmail && x.AuthorPassword == p.AuthorPassword);
+
+            //var authorUserInfo = c.Authors.FirstOrDefault(x => x.AuthorEmail == p.AuthorEmail && x.AuthorPassword == p.AuthorPassword);
+            var authorUserInfo = alm.GetAuthor(p.AuthorEmail, p.AuthorPassword);
             if(authorUserInfo != null)
             {
                 FormsAuthentication.SetAuthCookie(authorUserInfo.AuthorEmail, false);
@@ -56,6 +61,13 @@ namespace MvcProjectCamp.Controllers
             {
                 return RedirectToAction("AuthorLogin");
             }
+        }
+
+        public ActionResult LogOut()
+        {
+            FormsAuthentication.SignOut();
+            Session.Abandon();
+            return RedirectToAction("Headings", "Default");
         }
     }
 }

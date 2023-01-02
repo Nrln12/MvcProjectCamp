@@ -51,5 +51,10 @@ namespace BusinessLayer.Concrete
         {
             return _contentDal.List(x => x.HeadingID == id);
         }
+
+        public List<Content> GetSearchedList(string p)
+        {
+            return _contentDal.List(x => x.ContentDetails.Contains(p));
+        }
     }
 }

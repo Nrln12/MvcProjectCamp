@@ -1,8 +1,40 @@
-﻿
+﻿@model EntityLayer.Concrete.Author
 @{
     ViewBag.Title = "AuthorProfile";
     Layout = "~/Views/Shared/_AuthorrLayout.cshtml";
 }
+<h2>Edit Your Profile</h2>
+@using (@Html.BeginForm("AuthorProfile", "AuthorPanel", FormMethod.Post))
+{
+    @Html.HiddenFor(x => x.AuthorID, new { @class = "form-control" })
+    @Html.Label("Author name")
+    @Html.TextBoxFor(x => x.AuthorFirstName, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.AuthorFirstName, "", new { @style = "color:red" })
+    <br />
+    @Html.Label("Author lastname")
+    @Html.TextBoxFor(x => x.AuthorLastName, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.AuthorLastName, "", new { @style = "color:red" })
+    <br />
+    @Html.Label("Author Email")
+    @Html.TextBoxFor(x => x.AuthorEmail, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.AuthorEmail, "", new { @style = "color:red" })
+    <br />
+    @Html.Label("Author Password")
+    @Html.TextBoxFor(x => x.AuthorPassword, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.AuthorPassword, "", new { @style = "color:red" })
+    <br />
+    @Html.Label("Author Image")
+    @Html.TextBoxFor(x => x.AuthorImage, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.AuthorImage, "", new { @style = "color:red" })
+    <br />
+    @Html.Label("Author Title")
+    @Html.TextBoxFor(x => x.AuthorTitle, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.AuthorTitle, "", new { @style = "color:red" })
+    <br />
 
-<h2>AuthorProfile</h2>
-Hello
+    @Html.Label("Author About")
+    @Html.TextAreaFor(x => x.AuhtorAbout, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.AuhtorAbout, "", new { @style = "color:red" })
+    <br />
+    <button class="btn btn-success">Edit Profile</button>
+}

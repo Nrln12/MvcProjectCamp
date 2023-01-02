@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.Concrete;
 using BusinessLayer.ValidationRules;
+using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using FluentValidation.Results;
@@ -16,11 +17,11 @@ namespace MvcProjectCamp.Controllers
         // GET: Message
         MessageManager mm = new MessageManager(new EfMessageDal());
         MessageValidator mv = new MessageValidator();
-
         [Authorize]
         public ActionResult Inbox()
         {
-            var messageValues = mm.GetListInbox();
+            string p = (string)Session["AuthorEmail"];
+            var messageValues = mm.GetListInbox(p);
             return View(messageValues);
         }
 
@@ -32,7 +33,8 @@ namespace MvcProjectCamp.Controllers
         }
         public ActionResult Sendbox()
         {
-            var messageValues = mm.GetListSendbox();
+            string mail = (string)Session["AuthorEmail"];
+            var messageValues = mm.GetListSendbox(mail);
             return View(messageValues);
         }
 
