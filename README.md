@@ -6,7 +6,7 @@ It's blog web page.
 - N-tier Architecture
 - MS SQL
 ## How to install
-Go to the web.config file and flex the **data source** to your own SQL Server. 
+Go to the web.config file and flex the **data source** to your own SQL Server. Then add migrations and start the project.
 ```
   <connectionStrings>
     <add name="Context" connectionString="data source= SQLSERVER; initial catalog=DbMvcCamp; integrated security=true;" providerName="System.Data.SqlClient" />
