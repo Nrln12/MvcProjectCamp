@@ -28,7 +28,7 @@ namespace BusinessLayer.Concrete
 
         public List<Message> GetListDraft(string p)
         {
-            return _messageDal.List(x => x.IsDraft == true && x.DeleteStatus==false);
+            return _messageDal.List(x => x.IsDraft == true && x.DeleteStatus==false && x.SenderMail==p);
         }
 
         public List<Message> GetListInbox(string p)

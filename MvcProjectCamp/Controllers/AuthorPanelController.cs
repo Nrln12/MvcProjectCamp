@@ -11,6 +11,7 @@ using PagedList;
 using PagedList.Mvc;
 using FluentValidation.Results;
 using BusinessLayer.ValidationRules;
+using System.IO;
 
 namespace MvcProjectCamp.Controllers
 {
@@ -26,6 +27,7 @@ namespace MvcProjectCamp.Controllers
         int authorIDInfo;
 
         [HttpGet]
+        [Authorize]
         public ActionResult AuthorProfile(int id=0)
         {
             string p = (string)Session["AuthorEmail"];
@@ -41,6 +43,14 @@ namespace MvcProjectCamp.Controllers
             ValidationResult result = validator.Validate(p);
             if (result.IsValid)
             {
+                if (Request.Files.Count > 0)
+                {
+                    string docName = Path.GetFileName(Request.Files[0].FileName);
+                    string extension = Path.GetExtension(Request.Files[0].FileName);
+                    string url = "~/Image/" + docName + extension;
+                    Request.Files[0].SaveAs(Server.MapPath(url));
+                    p.AuthorImage = "/Image/" + docName + extension;
+                }
                 am.AuthorUpdate(p);
                 return RedirectToAction("AllHeadings","AuthorPanel");
             }

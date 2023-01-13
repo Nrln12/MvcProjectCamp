@@ -77,8 +77,8 @@
                             <!-- /.card-body -->
                             <div class="card-footer">
                                 <div class="float-right">
-                                    <button type="button" class="btn btn-default"><i class="fas fa-pencil-alt"></i> Draft</button>
-                                    <button type="submit" class="btn btn-primary"><i class="far fa-envelope"></i> Send</button>
+                                    <input type="submit" value="Draft" class="btn btn-default" formaction="@Url.Action("IsDraft","AuthorPanelMessage")" />
+                                    <button type="submit" class="btn btn-primary" formaction="@Url.Action("NewMessage", "AuthorPanelMessage")"><i class="far fa-envelope"></i> Send</button>
                                 </div>
                                 <button type="reset" class="btn btn-default"><i class="fas fa-times"></i> Discard</button>
                             </div>

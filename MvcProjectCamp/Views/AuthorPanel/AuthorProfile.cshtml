@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_AuthorrLayout.cshtml";
 }
 <h2>Edit Your Profile</h2>
-@using (@Html.BeginForm("AuthorProfile", "AuthorPanel", FormMethod.Post))
+@using (@Html.BeginForm("AuthorProfile", "AuthorPanel", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.HiddenFor(x => x.AuthorID, new { @class = "form-control" })
     @Html.Label("Author name")
@@ -24,7 +24,7 @@
     @Html.ValidationMessageFor(x => x.AuthorPassword, "", new { @style = "color:red" })
     <br />
     @Html.Label("Author Image")
-    @Html.TextBoxFor(x => x.AuthorImage, new { @class = "form-control" })
+    @Html.TextBoxFor(x => x.AuthorImage, new { @class = "form-control", type="file" })
     @Html.ValidationMessageFor(x => x.AuthorImage, "", new { @style = "color:red" })
     <br />
     @Html.Label("Author Title")

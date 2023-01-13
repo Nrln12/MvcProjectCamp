@@ -31,6 +31,11 @@ namespace BusinessLayer.Concrete
             _authorDal.Update(author);
         }
 
+        public Author GetByEmail(string p)
+        {
+            return _authorDal.Get(x => x.AuthorEmail == p);
+        }
+
         public Author GetById(int id)
         {
             return _authorDal.Get(x => x.AuthorID == id);

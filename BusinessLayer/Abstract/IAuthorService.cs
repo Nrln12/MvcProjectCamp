@@ -14,5 +14,6 @@ namespace BusinessLayer.Abstract
         void AuthorDelete(Author author);
         void AuthorUpdate(Author author);
         Author GetById(int id);
+        Author GetByEmail(string p);
     }
 }

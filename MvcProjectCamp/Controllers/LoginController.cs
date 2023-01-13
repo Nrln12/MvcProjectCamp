@@ -1,9 +1,12 @@
 ﻿using BusinessLayer.Concrete;
+using BusinessLayer.ValidationRules;
 using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
+using FluentValidation.Results;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -16,6 +19,9 @@ namespace MvcProjectCamp.Controllers
     {
         Context c = new Context();
         AuthorLoginManager alm = new AuthorLoginManager(new EfAuthorDal());
+       
+        AuhtorManager am = new AuhtorManager(new EfAuthorDal());
+       
         // GET: Login
         [HttpGet]
         public ActionResult Index()
@@ -62,7 +68,58 @@ namespace MvcProjectCamp.Controllers
                 return RedirectToAction("AuthorLogin");
             }
         }
+        [HttpGet]
+        public ActionResult Register()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Register(Author p)
+        {
+            AuthorValidator av = new AuthorValidator();
+            ValidationResult result = av.Validate(p);
+            if (result.IsValid)
+            {
+                var author = am.GetByEmail(p.AuthorEmail);
+                if (author == null)
+                {
+                    if (Request.Files.Count > 0)
+                    {
+                        string docName = Path.GetFileName(Request.Files[0].FileName);
+                        string extension = Path.GetExtension(Request.Files[0].FileName);
+                        string url = "~/Image/" + docName + extension;
+                        Request.Files[0].SaveAs(Server.MapPath(url));
+                        p.AuthorImage = "/Image/" + docName + extension;
+                    }
+                    p.AuthorStatus = true;
+                    am.AuthorAdd(p);
+                    ViewBag.errorMessage = "";
+                    return RedirectToAction("AuthorLogin");
+                }
+                else
+                {
+                    ViewBag.errorMessage = "This email already exists.";
+                    return View();
+                }
+            }
+            else
+            {
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+            }
+            return View();
+        }
 
+        [HttpPost]
+        public ActionResult AdditionalInf(int id)
+        {
+            var author = am.GetById(id);
+            am.AuthorUpdate(author);
+            author.AuthorStatus = true;
+            return View();
+        }
         public ActionResult LogOut()
         {
             FormsAuthentication.SignOut();

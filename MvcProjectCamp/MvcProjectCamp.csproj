@@ -2671,6 +2671,11 @@
     <Content Include="Views\Message\DraftMessages.cshtml" />
     <Content Include="Views\Message\GetDraftDetails.cshtml" />
     <Content Include="Views\Message\TrashBin.cshtml" />
+    <Content Include="Views\AuthorPanelMessage\DraftMessages.cshtml" />
+    <Content Include="Views\AuthorPanelMessage\GetDraftDetails.cshtml" />
+    <Content Include="Views\AuthorPanelMessage\TrashBin.cshtml" />
+    <Content Include="Views\Login\Register.cshtml" />
+    <Content Include="Views\Home\NewMessagePartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

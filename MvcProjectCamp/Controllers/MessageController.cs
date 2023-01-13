@@ -113,29 +113,27 @@ namespace MvcProjectCamp.Controllers
             var values = mm.GetDraftById(id);
             return View(values);
         }
-        [HttpGet]
+        [HttpGet] 
         public ActionResult SentDraft(int id)
         {
             var message = mm.GetDraftById(id);
-            message.IsDraft = false;
-            message.MessageDate = DateTime.Parse(DateTime.Now.ToShortDateString());
-            message.MessageStatus = true;
-            mm.MessageUpdate(message);
-            return RedirectToAction("Sendbox");
+            string mail = (string)Session["AdminUserName"];
+            return View(message);
         }
         [HttpPost]
         public ActionResult SentDraft(Message p)
         {
+            
             string mail = (string)Session["AdminUserName"];
             ValidationResult result = mv.Validate(p);
             if (result.IsValid)
             {
-                p.MessageDate = DateTime.Parse(DateTime.Now.ToShortDateString());
-                p.SenderMail = mail;
                 p.IsDraft = false;
+                p.MessageDate = DateTime.Parse(DateTime.Now.ToShortDateString());
                 p.MessageStatus = true;
-                mm.MessageAdd(p);
+                mm.MessageUpdate(p);
                 return RedirectToAction("Sendbox");
+
             }
             else
             {
@@ -145,8 +143,8 @@ namespace MvcProjectCamp.Controllers
                 }
             }
             return View();
-            
         }
+        
         public ActionResult DeleteMessage(int id)
         {
             var message = mm.GetById(id);
@@ -161,6 +159,7 @@ namespace MvcProjectCamp.Controllers
             var trashMessages =mm.GetTrashBin(mail);
             return View(trashMessages);
         }
+        
        
     }
 }

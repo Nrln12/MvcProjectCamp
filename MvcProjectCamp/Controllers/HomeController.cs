@@ -1,5 +1,7 @@
 ﻿using BusinessLayer.Concrete;
+using BusinessLayer.ValidationRules;
 using DataAccessLayer.EntityFramework;
+using EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,5 +44,8 @@ namespace MvcProjectCamp.Controllers
             ViewBag.categoryCount = ctm.GetList().Count();
             return View();
         }
+      
+     
+     
     }
 }

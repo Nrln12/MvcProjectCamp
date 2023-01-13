@@ -1,9 +1,10 @@
 ﻿@using EntityLayer.Concrete
 @model List<Message>
 @{
-    ViewBag.Title = "Sendbox";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.Title = "DraftMessages";
+    Layout = "~/Views/Shared/_AuthorrLayout.cshtml";
 }
+
 
 <!DOCTYPE html>
 <html>
@@ -25,7 +26,7 @@
     <!-- Main content -->
     <section class="content">
         <div class="row">
-            @Html.Action("ContactPartial", "Contact")
+            @Html.Action("MessageListMenu", "AuthorPanelMessage")
             <!-- /.col -->
             <div class="col-md-9">
                 <div class="card card-primary card-outline">
@@ -51,6 +52,7 @@
                                 <i class="far fa-square"></i>
                             </button>
                             <div class="btn-group">
+                                <button type="button" class="btn btn-default btn-sm"><i class="far fa-trash-alt"></i></button>
                                 <button type="button" class="btn btn-default btn-sm"><i class="fas fa-reply"></i></button>
                                 <button type="button" class="btn btn-default btn-sm"><i class="fas fa-share"></i></button>
                             </div>
@@ -74,14 +76,14 @@
                                         <tr>
                                             <td>
                                                 <div class="icheck-primary">
-                                                    <a href="/AuthorPanelMessage/DeleteMessage/@item.MessageID" class="btn btn-default btn-sm"><i class="far fa-trash-alt"></i></a>
-
+                                                    <input type="checkbox" value="" id="check1">
+                                                    <label for="check1"></label>
                                                 </div>
                                             </td>
-                                            <td class="mailbox-star"><a href="/Message/GetSentBoxDetails/@item.MessageID"><i class="fas fa-star text-warning"></i></a></td>
-                                            <td class="mailbox-name"><a href="/Message/GetSentBoxDetails/@item.MessageID">@item.RececiverMail</a></td>
+                                            <td class="mailbox-star"><a href="/AuthorPanelMessage/GetDraftDetails/@item.MessageID"><i class="fas fa-star text-warning"></i></a></td>
+                                            <td class="mailbox-name"><a href="/AuthorPanelMessage/GetDraftDetails/@item.MessageID">@item.RececiverMail</a></td>
                                             <td class="mailbox-subject">
-                                                <b>@item.Subject</b> @item.MessageContent.Substring(0, 5)...
+                                                <b>@item.Subject</b>
                                             </td>
                                             <td class="mailbox-attachment"></td>
                                             <td class="mailbox-date">@item.MessageDate.ToString("dd-MMM-yyyy")</td>
@@ -103,6 +105,7 @@
                                 <i class="far fa-square"></i>
                             </button>
                             <div class="btn-group">
+                                <button type="button" class="btn btn-default btn-sm"><i class="far fa-trash-alt"></i></button>
                                 <button type="button" class="btn btn-default btn-sm"><i class="fas fa-reply"></i></button>
                                 <button type="button" class="btn btn-default btn-sm"><i class="fas fa-share"></i></button>
                             </div>
@@ -133,49 +136,42 @@
     <script src="~/AdminLTE-3.0.4/dist/js/adminlte.min.js"></script>
     <!-- Page Script -->
     <script>
-        $(document).ready(function () {
-            $("button").click(function () {
-                $('input[name="checkSession"]:checked').each(function () {
-                    alert('Selected Value: ' + this.nodeValue)
-                })
-            });
-        })
-$(function () {
-    //Enable check and uncheck all functionality
-    $('.checkbox-toggle').click(function () {
-      var clicks = $(this).data('clicks')
-      if (clicks) {
-        //Uncheck all checkboxes
-        $('.mailbox-messages input[type=\'checkbox\']').prop('checked', false)
-        $('.checkbox-toggle .far.fa-check-square').removeClass('fa-check-square').addClass('fa-square')
-      } else {
-        //Check all checkboxes
-        $('.mailbox-messages input[type=\'checkbox\']').prop('checked', true)
-        $('.checkbox-toggle .far.fa-square').removeClass('fa-square').addClass('fa-check-square')
-      }
-      $(this).data('clicks', !clicks)
-    })
+        $(function () {
+            //Enable check and uncheck all functionality
+            $('.checkbox-toggle').click(function () {
+                var clicks = $(this).data('clicks')
+                if (clicks) {
+                    //Uncheck all checkboxes
+                    $('.mailbox-messages input[type=\'checkbox\']').prop('checked', false)
+                    $('.checkbox-toggle .far.fa-check-square').removeClass('fa-check-square').addClass('fa-square')
+                } else {
+                    //Check all checkboxes
+                    $('.mailbox-messages input[type=\'checkbox\']').prop('checked', true)
+                    $('.checkbox-toggle .far.fa-square').removeClass('fa-square').addClass('fa-check-square')
+                }
+                $(this).data('clicks', !clicks)
+            })
 
-    //Handle starring for glyphicon and font awesome
-    $('.mailbox-star').click(function (e) {
-      e.preventDefault()
-      //detect type
-      var $this = $(this).find('a > i')
-      var glyph = $this.hasClass('glyphicon')
-      var fa    = $this.hasClass('fa')
+            //Handle starring for glyphicon and font awesome
+            $('.mailbox-star').click(function (e) {
+                e.preventDefault()
+                //detect type
+                var $this = $(this).find('a > i')
+                var glyph = $this.hasClass('glyphicon')
+                var fa = $this.hasClass('fa')
 
-      //Switch states
-      if (glyph) {
-        $this.toggleClass('glyphicon-star')
-        $this.toggleClass('glyphicon-star-empty')
-      }
+                //Switch states
+                if (glyph) {
+                    $this.toggleClass('glyphicon-star')
+                    $this.toggleClass('glyphicon-star-empty')
+                }
 
-      if (fa) {
-        $this.toggleClass('fa-star')
-        $this.toggleClass('fa-star-o')
-      }
-    })
-  })</script>
+                if (fa) {
+                    $this.toggleClass('fa-star')
+                    $this.toggleClass('fa-star-o')
+                }
+            })
+        })</script>
     <!-- AdminLTE for demo purposes -->
     <script src="../../dist/js/demo.js"></script>
 </body>
