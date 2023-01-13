@@ -31,6 +31,11 @@ namespace BusinessLayer.Concrete
             return _headingDal.List(x => x.AuthorID == id);
         }
 
+        public List<Heading> GetListByCategory(int id)
+        {
+            return _headingDal.List(x => x.CategoryID == id);
+        }
+
         public void HeadingAdd(Heading heading)
         {
             heading.HeadingStatus = true;

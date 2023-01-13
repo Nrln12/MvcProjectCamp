@@ -18,22 +18,37 @@ namespace BusinessLayer.Concrete
         }
         public Message GetById(int id)
         {
-            return _messageDal.Get(x => x.MessageID == id);
+            return _messageDal.Get(x => x.MessageID == id && x.IsDraft == false);
+        }
+
+        public Message GetDraftById(int id)
+        {
+            return _messageDal.Get(x => x.MessageID == id && x.IsDraft == true);
+        }
+
+        public List<Message> GetListDraft(string p)
+        {
+            return _messageDal.List(x => x.IsDraft == true && x.DeleteStatus==false);
         }
 
         public List<Message> GetListInbox(string p)
         {
-            return _messageDal.List(x=>x.RececiverMail== p);
+            return _messageDal.List(x=>x.RececiverMail== p && x.DeleteStatus==false);
         }
 
         public List<Message> GetListSendbox(string p)
         {
-            return _messageDal.List(x => x.SenderMail == p); 
+            return _messageDal.List(x => x.SenderMail == p && x.IsDraft==false && x.DeleteStatus==false); 
         }
 
-        public List<Message> GetUnreadMessages()
+        public List<Message> GetTrashBin(string p)
         {
-            return _messageDal.List(x => x.RececiverMail == "admin@gmail.com" && x.MessageStatus == false);
+            return _messageDal.List(x => x.SenderMail == p && x.DeleteStatus==true);
+        }
+
+        public List<Message> GetUnreadMessages(string p)
+        {
+            return _messageDal.List(x => x.RececiverMail == p && x.MessageStatus == false);
         }
 
        
@@ -52,5 +67,6 @@ namespace BusinessLayer.Concrete
         {
             _messageDal.Update(message);
         }
+
     }
 }

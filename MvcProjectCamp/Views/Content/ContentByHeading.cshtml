@@ -18,25 +18,34 @@
                     <div class="col-md-12">
                         <!-- The time line -->
                         <div class="timeline">
-                            @foreach (var item in Model)
+                            @if (Model.Count > 0)
                             {
-
-                                <!-- timeline time label -->
-                                <div class="time-label">
-                                    <span class="bg-success">@(((DateTime)item.ContentDate).ToString("dd-MMM-yyyy"))</span>
-                                </div>
-                                <!-- /.timeline-label -->
-                                <!-- timeline item -->
-                                <div>
-                                    <i class="fas fa-comment bg-yellow"></i>
-                                    <div class="timeline-item">
-                                        <h3 class="timeline-header"><a href="#">@item.Author.AuthorFirstName @item.Author.AuthorLastName</a></h3>
-                                        <div class="timeline-body">
-                                            @item.ContentDetails
+                                foreach (var item in Model)
+                                {
+                                    <!-- timeline time label -->
+                                    <div class="time-label">
+                                        <span class="bg-success">@(((DateTime)item.ContentDate).ToString("dd-MMM-yyyy"))</span>
+                                    </div>
+                                    <!-- /.timeline-label -->
+                                    <!-- timeline item -->
+                                    <div>
+                                        <i class="fas fa-comment bg-yellow"></i>
+                                        <div class="timeline-item">
+                                            <h3 class="timeline-header"><a href="#">@item.Author.AuthorFirstName @item.Author.AuthorLastName</a></h3>
+                                            <div class="timeline-body">
+                                                @item.ContentDetails
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+
+                                }
                             }
+                            else
+                            {
+                                <br /><br />
+                                <h2>This heading doesn't have content.</h2>
+                            }
+
                             <!-- END timeline item -->
                         </div>
                     </div>

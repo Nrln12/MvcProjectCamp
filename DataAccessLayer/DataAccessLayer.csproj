@@ -52,27 +52,28 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\IAboutDal.cs" />
-    <Compile Include="Abstract\IAdmin.cs" />
+    <Compile Include="Abstract\IAdminDal.cs" />
     <Compile Include="Abstract\IAuthorDal.cs" />
     <Compile Include="Abstract\ICategoryDal.cs" />
     <Compile Include="Abstract\IContactDal.cs" />
     <Compile Include="Abstract\IContentDal.cs" />
-    <Compile Include="Abstract\IDraftMessageDal.cs" />
     <Compile Include="Abstract\IHeadingDal.cs" />
     <Compile Include="Abstract\IImageFileDal.cs" />
     <Compile Include="Abstract\IMessageDal.cs" />
     <Compile Include="Abstract\IRepository.cs" />
+    <Compile Include="Abstract\IRoleDal.cs" />
     <Compile Include="Abstract\ISkillDal.cs" />
     <Compile Include="Concrete\Context.cs" />
     <Compile Include="EntityFramework\EfAboutDal.cs" />
+    <Compile Include="EntityFramework\EfAdminDal.cs" />
     <Compile Include="EntityFramework\EfAuthorDal.cs" />
     <Compile Include="EntityFramework\EfCategoryDal.cs" />
     <Compile Include="EntityFramework\EfContactDal.cs" />
     <Compile Include="EntityFramework\EfContentDal.cs" />
-    <Compile Include="EntityFramework\EfDraftMessageDal.cs" />
     <Compile Include="EntityFramework\EfHeadingDal.cs" />
     <Compile Include="EntityFramework\EfImageFileDal.cs" />
     <Compile Include="EntityFramework\EfMessageDal.cs" />
+    <Compile Include="EntityFramework\EfRoleDal.cs" />
     <Compile Include="EntityFramework\EfSkillDal.cs" />
     <Compile Include="Migrations\202211031058054_mig1.cs" />
     <Compile Include="Migrations\202211031058054_mig1.designer.cs">
@@ -166,6 +167,22 @@
     <Compile Include="Migrations\202212142212119_change_datatype.designer.cs">
       <DependentUpon>202212142212119_change_datatype.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202301062034469_add_role_table.cs" />
+    <Compile Include="Migrations\202301062034469_add_role_table.designer.cs">
+      <DependentUpon>202301062034469_add_role_table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202301070814255_remove_nullable.cs" />
+    <Compile Include="Migrations\202301070814255_remove_nullable.designer.cs">
+      <DependentUpon>202301070814255_remove_nullable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202301101244567_add_col.cs" />
+    <Compile Include="Migrations\202301101244567_add_col.designer.cs">
+      <DependentUpon>202301101244567_add_col.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202301111845316_add_del_status_column.cs" />
+    <Compile Include="Migrations\202301111845316_add_del_status_column.designer.cs">
+      <DependentUpon>202301111845316_add_del_status_column.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AuthorRepository.cs" />
@@ -251,6 +268,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202212142212119_change_datatype.resx">
       <DependentUpon>202212142212119_change_datatype.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202301062034469_add_role_table.resx">
+      <DependentUpon>202301062034469_add_role_table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202301070814255_remove_nullable.resx">
+      <DependentUpon>202301070814255_remove_nullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202301101244567_add_col.resx">
+      <DependentUpon>202301101244567_add_col.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202301111845316_add_del_status_column.resx">
+      <DependentUpon>202301111845316_add_del_status_column.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

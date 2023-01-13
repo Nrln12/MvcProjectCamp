@@ -5,10 +5,9 @@
 }
 
 <h2>Author Editing Page</h2>
-@using (@Html.BeginForm("EditAuthor", "Author", FormMethod.Post))
+@using (@Html.BeginForm("EditAuthor", "Author", FormMethod.Post, new { enctype="multipart/form-data"}))
 {
-    @Html.Label("Author ID")
-    @Html.TextBoxFor(x => x.AuthorID, new { @class = "form-control" })
+    @Html.HiddenFor(x => x.AuthorID, new { @class = "form-control" })
     <br />
 
     @Html.Label("Author name")
@@ -28,7 +27,7 @@
     @Html.ValidationMessageFor(x => x.AuthorPassword, "", new { @style = "color:red" })
     <br />
     @Html.Label("Author Image")
-    @Html.TextBoxFor(x => x.AuthorImage, new { @class = "form-control" })
+    @Html.TextBoxFor(x => x.AuthorImage, new { @class = "form-control", type="file" })
     @Html.ValidationMessageFor(x => x.AuthorImage, "", new { @style = "color:red" })
     <br />
     @Html.Label("Author Title")

@@ -17,5 +17,7 @@ namespace EntityLayer.Concrete
         public string AdminPassword { get; set; }
         [StringLength(1)]
         public string AdminRole { get; set; }
+        public int? RoleID { get; set; }
+        public virtual Role Role { get; set; }
     }
 }

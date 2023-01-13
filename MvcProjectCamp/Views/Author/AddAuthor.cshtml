@@ -5,7 +5,7 @@
 }
 
 <h1>Add New Author</h1>
-@using (Html.BeginForm("AddAuthor", "Author", FormMethod.Post))
+@using (Html.BeginForm("AddAuthor", "Author", FormMethod.Post, new { enctype="multipart/form-data"}))
 {
     <div class="form form-group">
         @Html.Label("Author name")
@@ -20,6 +20,9 @@
         @Html.TextBoxFor(x => x.AuthorEmail, new {@class="form-control"})
         @Html.ValidationMessageFor(x=>x.AuthorEmail)
         <br />
+        @Html.Label("Author Image")
+        @Html.TextBoxFor(x=>x.AuthorImage, new {@class="form-control", type="file"})
+        <br />
         @Html.Label("Author Password")
         @Html.TextBoxFor(x=>x.AuthorPassword, new { @class="form-control"})
         @Html.ValidationMessageFor(x=>x.AuthorPassword)
@@ -32,6 +35,6 @@
         @Html.TextAreaFor(x=>x.AuhtorAbout, new { @class = "form-control" })
         @Html.ValidationMessageFor(x=>x.AuhtorAbout)
         <br />
-        <button class="btn btn-info">Add Author</button>
+        <input class="btn btn-info" type="submit" value="Add Author">
     </div>
 }

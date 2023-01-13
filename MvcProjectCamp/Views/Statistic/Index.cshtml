@@ -3,8 +3,52 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+<br />
+<div class="container">
+    <div class="row">
+        <div class="col card text-white bg-primary mb-3 mr-2" style="max-width: 18rem;">
+            <div class="card-header">Stastic</div>
+            <div class="card-body">
+                <h5 class="card-title">The total count of categories: </h5>
+                <p class="card-text">@ViewBag.categoryCount</p>
+            </div>
+        </div>
+
+        <div class="col card text-white bg-warning mb-3 mr-2" style="max-width: 18rem;">
+            <div class="card-header">Stastic</div>
+            <div class="card-body">
+                <h5 class="card-title">The total count of Headings in Education Category: </h5>
+                <p class="card-text">@ViewBag.educationContentCount</p>
+            </div>
+        </div>
+
+        <div class="col card text-white bg-success mb-3 mr-2" style="max-width: 18rem;">
+            <div class="card-header">Stastic</div>
+            <div class="card-body">
+                <h5 class="card-title">The count of author's names with alphabet 'a': </h5>
+                <p class="card-text">@ViewBag.authorCount</p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+
+        <div class="col card text-white bg-danger mb-3 mr-2" style="max-width: 18rem;">
+            <div class="card-header">Stastic</div>
+            <div class="card-body">
+                <h5 class="card-title">The category with max heading count </h5>
+
+                <p class="card-text">@ViewBag.maxc</p>
+            </div>
+        </div>
 
 
-<div class="col-3">
-    @Html.Action("CategoryCount","Statistic")
+        <div class="col card text-white bg-gradient-cyan mb-3 mr-2" style="max-width: 18rem;">
+            <div class="card-header">Stastic</div>
+            <div class="card-body">
+                <h5 class="card-title">The count of difference between true and false categories </h5>
+
+                <p class="card-text">@ViewBag.difference</p>
+            </div>
+        </div>
+    </div>
 </div>

@@ -41,7 +41,7 @@
                @Html.Action("ContactPartial","Contact")
                 <!-- /.col -->
                 <div class="col-md-9">
-                    @using (Html.BeginForm("NewMessage", "Message", FormMethod.Post))
+                    @using (Html.BeginForm(FormMethod.Post))
                     {
 
                         <div class="card card-primary card-outline">
@@ -77,8 +77,8 @@
                             <!-- /.card-body -->
                             <div class="card-footer">
                                 <div class="float-right">
-                                    <button type="button" class="btn btn-default"><i class="fas fa-pencil-alt"></i> Draft</button>
-                                    <button type="submit" class="btn btn-primary"><i class="far fa-envelope"></i> Send</button>
+                                    <input type="submit" value="Draft" class="btn btn-default" formaction="@Url.Action("IsDraft","Message")"/>
+                                    <button type="submit" class="btn btn-primary" formaction="@Url.Action("NewMessage", "Message")"><i class="far fa-envelope"></i> Send</button>
                                 </div>
                                 <button type="reset" class="btn btn-default"><i class="fas fa-times"></i> Discard</button>
                             </div>

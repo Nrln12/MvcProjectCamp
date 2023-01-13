@@ -91,7 +91,7 @@
                             {
                                 color = "badge badge-primary";
                             }
-                           
+
                             <tr>
                                 <td>
                                     @item.HeadingID
@@ -124,7 +124,7 @@
                                         status = "Passive";
                                         txtcolor = "text-danger";
                                     }
-                                    <p class="@txtcolor">@status</p>
+                                    <a class="@txtcolor" href="/Heading/DeleteHeading/@item.HeadingID">@status</a>
                                 </td>
                                 <td class="project-state">
                                     <span class="@color">@item.Category.CategoryName</span>
@@ -140,21 +140,25 @@
                                         </i>
                                         Edit
                                     </a>
-                                    <a class="btn btn-danger btn-sm" href="/Heading/DeleteHeading/@item.HeadingID">
-                                        <i class="fas fa-trash">
-                                        </i>
-                                        @if (item.HeadingStatus == true)
-                                        {
-                                            status = "Active";
-                                            
-                                        }
-                                        else
-                                        {
-                                            status = "Passive";
-                                            
-                                        }
-                                        @status
-                                    </a>
+
+
+                                    @if (item.HeadingStatus == false)
+                                    {
+
+                                        <a class="btn btn-danger btn-sm disabled" href="/Heading/DeleteHeading/@item.HeadingID">
+                                            <i class="fas fa-trash">
+                                            </i>
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <a class="btn btn-danger btn-sm" href="/Heading/DeleteHeading/@item.HeadingID">
+                                            <i class="fas fa-trash">
+                                            </i>
+                                        </a>
+                                    }
+
+
                                 </td>
                             </tr>
                         }

@@ -9,9 +9,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.IO;
 
 namespace MvcProjectCamp.Controllers
 {
+    
     public class MessageController : Controller
     {
         // GET: Message
@@ -20,7 +22,7 @@ namespace MvcProjectCamp.Controllers
         [Authorize]
         public ActionResult Inbox()
         {
-            string p = (string)Session["AuthorEmail"];
+            string p = (string)Session["AdminUserName"];
             var messageValues = mm.GetListInbox(p);
             return View(messageValues);
         }
@@ -33,7 +35,7 @@ namespace MvcProjectCamp.Controllers
         }
         public ActionResult Sendbox()
         {
-            string mail = (string)Session["AuthorEmail"];
+            string mail = (string)Session["AdminUserName"];
             var messageValues = mm.GetListSendbox(mail);
             return View(messageValues);
         }
@@ -53,10 +55,13 @@ namespace MvcProjectCamp.Controllers
         [HttpPost]
         public ActionResult NewMessage(Message p)
         {
+            string mail = (string)Session["AdminUserName"];
             ValidationResult result = mv.Validate(p);
             if (result.IsValid)
             {
                 p.MessageDate = DateTime.Parse(DateTime.Now.ToShortDateString());
+                p.SenderMail = mail;
+                p.MessageStatus = true;
                 mm.MessageAdd(p);
                 return RedirectToAction("Sendbox");
             }
@@ -84,5 +89,78 @@ namespace MvcProjectCamp.Controllers
             mm.MessageUpdate(message);
             return RedirectToAction("Inbox");
         }
+       
+        public ActionResult DraftMessages()
+        {
+            string mail = (string)Session["AdminUserName"];
+            var draftMessages = mm.GetListDraft(mail);
+            return View(draftMessages);
+        }
+
+        public ActionResult IsDraft(Message p)
+        {
+            string mail = (string)Session["AdminUserName"];
+            p.SenderMail = mail;
+            p.IsDraft = true;
+            p.MessageDate = DateTime.Parse(DateTime.Now.ToShortDateString());
+            p.MessageStatus = true;
+            mm.MessageAdd(p);
+            return RedirectToAction("DraftMessages");
+        }
+
+        public ActionResult GetDraftDetails(int id)
+        {
+            var values = mm.GetDraftById(id);
+            return View(values);
+        }
+        [HttpGet]
+        public ActionResult SentDraft(int id)
+        {
+            var message = mm.GetDraftById(id);
+            message.IsDraft = false;
+            message.MessageDate = DateTime.Parse(DateTime.Now.ToShortDateString());
+            message.MessageStatus = true;
+            mm.MessageUpdate(message);
+            return RedirectToAction("Sendbox");
+        }
+        [HttpPost]
+        public ActionResult SentDraft(Message p)
+        {
+            string mail = (string)Session["AdminUserName"];
+            ValidationResult result = mv.Validate(p);
+            if (result.IsValid)
+            {
+                p.MessageDate = DateTime.Parse(DateTime.Now.ToShortDateString());
+                p.SenderMail = mail;
+                p.IsDraft = false;
+                p.MessageStatus = true;
+                mm.MessageAdd(p);
+                return RedirectToAction("Sendbox");
+            }
+            else
+            {
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                }
+            }
+            return View();
+            
+        }
+        public ActionResult DeleteMessage(int id)
+        {
+            var message = mm.GetById(id);
+            message.DeleteStatus = true;
+            mm.MessageUpdate(message);
+            return RedirectToAction("TrashBin");
+        }
+
+        public ActionResult TrashBin()
+        {
+            string mail = (string)Session["AdminUserName"];
+            var trashMessages =mm.GetTrashBin(mail);
+            return View(trashMessages);
+        }
+       
     }
 }

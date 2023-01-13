@@ -75,27 +75,31 @@
                                     {
                                         if (item.MessageStatus == true)
                                         {
-                                            color= "font-weight-normal";
-                                  }
-                                <tr>
+                                            color = "font-weight-normal";
+                                        }
+                                        else
+                                        {
+                                            color = "font-weight-bold";
+                                        }
+                                        <tr>
 
-                                    <td>
-                                        <div class="icheck-primary">
-                                            <a href="/Message/MarkAsRead/@item.MessageID">Mark as read</a>
+                                            <td>
+                                                <div class="icheck-primary">
+                                                    <a href="/Message/MarkAsRead/@item.MessageID">Mark as read</a>
 
-                                        </div>
-                                    </td>
-                                    <td class="mailbox-star"><a href="/Message/GetInboxDetails/@item.MessageID"><i class="fas fa-star text-warning"></i></a></td>
-                                    <td class="mailbox-name"><a href="/Message/GetInboxDetails/@item.MessageID">@item.SenderMail</a></td>
+                                                </div>
+                                            </td>
+                                            <td class="mailbox-star"><a href="/Message/GetInboxDetails/@item.MessageID"><i class="fas fa-star text-warning"></i></a></td>
+                                            <td class="mailbox-name"><a href="/Message/GetInboxDetails/@item.MessageID">@item.SenderMail</a></td>
 
-                                    <td class="mailbox-subject">
+                                            <td class="mailbox-subject">
 
-                                        <b class="@color">@item.Subject</b> @item.MessageContent.Substring(0, 20)...
-                                    </td>
-                                    <td class="mailbox-attachment"></td>
-                                    <td class="mailbox-date">@item.MessageDate.ToString("dd-MMM-yyyy")</td>
-                                </tr>
-                            }
+                                                <span class="@color">@item.Subject</span> @item.MessageContent.Substring(0, 20)...
+                                            </td>
+                                            <td class="mailbox-attachment"></td>
+                                            <td class="mailbox-date">@item.MessageDate.ToString("dd-MMM-yyyy")</td>
+                                        </tr>
+                                    }
 
 
                                 </tbody>

@@ -51,7 +51,6 @@
                                 <i class="far fa-square"></i>
                             </button>
                             <div class="btn-group">
-                                <button type="button" class="btn btn-default btn-sm"><i class="far fa-trash-alt"></i></button>
                                 <button type="button" class="btn btn-default btn-sm"><i class="fas fa-reply"></i></button>
                                 <button type="button" class="btn btn-default btn-sm"><i class="fas fa-share"></i></button>
                             </div>
@@ -75,14 +74,14 @@
                                         <tr>
                                             <td>
                                                 <div class="icheck-primary">
-                                                    <input type="checkbox" value="" id="check1">
-                                                    <label for="check1"></label>
+                                                    <a href="/Message/DeleteMessage/@item.MessageID" class="btn btn-default btn-sm"><i class="far fa-trash-alt"></i></a>
+
                                                 </div>
                                             </td>
                                             <td class="mailbox-star"><a href="/Message/GetSentBoxDetails/@item.MessageID"><i class="fas fa-star text-warning"></i></a></td>
                                             <td class="mailbox-name"><a href="/Message/GetSentBoxDetails/@item.MessageID">@item.RececiverMail</a></td>
                                             <td class="mailbox-subject">
-                                                <b>@item.Subject</b> @item.MessageContent.Substring(0, 20)...
+                                                <b>@item.Subject</b> @item.MessageContent.Substring(0, 5)...
                                             </td>
                                             <td class="mailbox-attachment"></td>
                                             <td class="mailbox-date">@item.MessageDate.ToString("dd-MMM-yyyy")</td>
@@ -104,7 +103,6 @@
                                 <i class="far fa-square"></i>
                             </button>
                             <div class="btn-group">
-                                <button type="button" class="btn btn-default btn-sm"><i class="far fa-trash-alt"></i></button>
                                 <button type="button" class="btn btn-default btn-sm"><i class="fas fa-reply"></i></button>
                                 <button type="button" class="btn btn-default btn-sm"><i class="fas fa-share"></i></button>
                             </div>
@@ -135,6 +133,13 @@
     <script src="~/AdminLTE-3.0.4/dist/js/adminlte.min.js"></script>
     <!-- Page Script -->
     <script>
+        $(document).ready(function () {
+            $("button").click(function () {
+                $('input[name="checkSession"]:checked').each(function () {
+                    alert('Selected Value: ' + this.nodeValue)
+                })
+            });
+        })
 $(function () {
     //Enable check and uncheck all functionality
     $('.checkbox-toggle').click(function () {

@@ -23,13 +23,13 @@ namespace MvcProjectCamp.Controllers
 
         public PartialViewResult ContactPartial()
         {
-            string p = (string)Session["AuthorEmail"];
-            var numContact = cm.GetList().Count();
-            var numUnreadInbox = mm.GetUnreadMessages().Count();
+            string p = (string)Session["AdminUserName"];
+            var numUnreadInbox = mm.GetUnreadMessages(p).Count();
+            var numDraft = mm.GetListDraft(p).Count();
             var numSentbox = mm.GetListSendbox(p).Count();
-            ViewBag.contCount = numContact;
             ViewBag.unreadCount = numUnreadInbox;
             ViewBag.sentCount = numSentbox;
+            ViewBag.draftCount = numDraft;
             return PartialView();
         }
         public ActionResult GetContactDetails(int id)

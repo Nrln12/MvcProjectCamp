@@ -35,6 +35,8 @@ namespace MvcProjectCamp.Controllers
         public ActionResult ContentByHeading(int id)
         {
             var contentValues = cm.GetListByHeadingId(id);
+            ViewBag.title = "This heading doesn't have any contents.";
+            
             return View(contentValues);
         }
     }

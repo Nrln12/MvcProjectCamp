@@ -20,6 +20,24 @@ namespace MvcProjectCamp.Controllers
             var headingValues = hm.GetList();
             return View(headingValues);
         }
+        public ActionResult HeadingReport()
+        {
+            var headingValues = hm.GetList();
+            return View(headingValues);
+        }
+        public ActionResult GetHeadingsByCategory(int id)
+        {
+            var headings = hm.GetListByCategory(id);
+            ViewBag.category = hm.GetList().Where(x=>x.CategoryID==id).Select(x=>x.Category.CategoryName).FirstOrDefault().ToString();
+            return View(headings);
+        }
+
+        public ActionResult GetHeadingByAuthor(int id)
+        {
+            var headingByAuthor = hm.GetListByAuthor(id);
+            ViewBag.author = hm.GetListByAuthor(id).Select(x => x.Author.AuthorFirstName + " "+ x.Author.AuthorLastName).FirstOrDefault().ToString();
+            return View(headingByAuthor);
+        }
         [HttpGet]
         public ActionResult AddHeading()
         {
