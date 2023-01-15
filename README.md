@@ -1,5 +1,5 @@
 # Mvc Blog Project
-It's blog web page.
+It's blog web page. You can see different articles based on related categories.
 ## Development Tools
 - MVC 
 - Entity Framework Core
